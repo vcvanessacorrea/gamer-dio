@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      color: #ffffff;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #6a0dad);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Canvas de partículas */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: purple;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: rgb(49, 4, 49);
+    }
+
+    .btn-secondary {
+      background-color: purple;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgb(49, 4, 49);
+    }
+
+    /* Header */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      color: #ffffff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: purple;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 80px 50px;
+      gap: 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    img {
+      border-radius: 15px;
+      max-width: 100%;
+    }
+
+    /* Seções alternadas */
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 80px 50px;
+      gap: 40px;
+    }
+
+    .section.alt {
+      flex-direction: row-reverse;
+    }
+
+    .section-text {
+      flex: 1;
+    }
+
+    .section-text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .section-text p {
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+    .section-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .section-image img {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid #444;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+
+      .hero,
+      .section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Canvas de partículas -->
+  <canvas id="particles"></canvas>
+
+  <header class="navbar">
+    <div class="logo">GameZone</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Comunidade</a></li>
+        <li><a href="#">Jogos</a></li>
+        <li><a href="#">Ranking</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-buttons">
+      <a href="#" class="btn btn-primary">Entrar</a>
+      <a href="#" class="btn btn-primary">Cadastre-se</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Conecte-se com jogadores do mundo todo</h1>
+      <p>Crie salas, monte times e suba de nível na sua jornada gamer com a GameZone.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">Entrar na GameZone</a>
+        <a href="#" class="btn btn-secondary">Baixar App</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://plus.unsplash.com/premium_photo-1683141331949-64810cfc4ca3?q=80&w=870&auto=format&fit=crop"
+        alt="Gamers se conectando">
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-text">
+      <h2>Participe de comunidades épicas</h2>
+      <p>Descubra grupos com seus jogos favoritos e participe de chats de voz, eventos e torneios.</p>
+    </div>
+    <div class="section-image">
+      <img src="https://images.unsplash.com/photo-1636036769389-343bb250f013?q=80&w=872&auto=format&fit=crop"
+        alt="Comunidade gamer">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-text">
+      <h2>Suba no ranking</h2>
+      <p>Mostre suas habilidades, ganhe XP e conquiste seu lugar no topo da tabela.</p>
+    </div>
+    <div class="section-image">
+      <img src="https://images.unsplash.com/photo-1636487410350-278a0b522b09?q=80&w=872&auto=format&fit=crop"
+        alt="Ranking de jogadores">
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 GameZone. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script das partículas -->
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const colors = ['#6a0dad', '#302b63', '#0f0c29', '#8a2be2'];
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      for (let i = 0; i < 100; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+
+</html>
